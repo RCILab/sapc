@@ -6,7 +6,7 @@ Project page for **Fidelity Is Not Identification: Structure-Aware Calibration o
 
 ## Contents
 
-- `index.html`, `static/`: self-contained, responsive project page, manuscript, actual simulation videos, figures and teaching slides.
+- `index.html`, `static/`: self-contained, responsive project page, manuscript, actual simulation videos and figures.
 - `research/`: simulator-native identification, experiment runners, MuJoCo write-back and Gazebo / Isaac collection code.
 - [Research artifacts release](https://github.com/RCILab/sapc/releases/tag/research-artifacts-v1): archived results, fixed reference trajectories, FR3 model and generated simulator worlds.
 
