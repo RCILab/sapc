@@ -1,6 +1,6 @@
 # SAPC — Fidelity Is Not Identification
 
-Project page for **Fidelity Is Not Identification: Structure-Aware Calibration of Robot Digital Twins** by Suhwan Park and Sanghyun Kim, Kyung Hee University.
+Project page for **Fidelity Is Not Identification: Structure-Aware Calibration of Robot Digital Twins** by Suhwan Park, Jihwan Lee, Jiyong Park and Sanghyun Kim, Kyung Hee University.
 
 **Project page:** https://rcilab.khu.ac.kr/sapc/
 
