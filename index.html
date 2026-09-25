@@ -35,14 +35,16 @@
       <p class="eyebrow">Robot digital twins · Physical attribution</p>
       <h1>Fidelity is not<br><em>identification.</em></h1>
       <p class="full-title">Structure-Aware Calibration<br>of Robot Digital Twins</p>
+    </div>
+    <div class="hero-meta">
       <p class="authors">Suhwan Park &nbsp;&middot;&nbsp; Jihwan Lee &nbsp;&middot;&nbsp; Jiyong Park &nbsp;&middot;&nbsp; <a href="mailto:kim87@khu.ac.kr">Sanghyun Kim</a></p>
       <p class="affiliation">Robot Control and Intelligence Laboratory<br>Kyung Hee University</p>
-      <p class="hero-lead">A twin can reproduce the motion while putting the correction in the wrong part of the robot.</p>
-      <div class="actions"><a class="button primary" href="static/pdfs/sapc-paper.pdf">Read the paper ↗</a><a class="button light" href="#video">Watch the experiment ↓</a></div>
+      <div class="actions"><a class="button primary" href="static/pdfs/sapc-paper.pdf">Read the paper ↗</a><a class="button light" href="#video">Explore the results ↓</a></div>
     </div>
-    <figure class="hero-robot">
-      <div class="robot-stage"><img src="static/images/loaded.png" width="720" height="710" alt="Native MuJoCo render of the FR3 robot carrying the illustrated 0.8 kilogram payload at its flange." fetchpriority="high"><span class="payload-tag"><b>0.8 kg</b>Known payload</span><span class="stage-mark">FR3 / CONTROLLED REFERENCE</span></div>
-      <figcaption>Known physical changes.<br>More than one explanation of the same motion.</figcaption>
+    <figure class="hero-video">
+      <div class="hero-video-heading"><span class="eyebrow">The edit test</span><h2>Remove the payload. Reveal the difference.</h2></div>
+      <video id="hero-video" controls muted loop playsinline preload="metadata" poster="static/images/payload-edit-poster.png" aria-label="Payload-removal experiment: unloaded reference, dense calibrated twin and SAPC, with measured TCP errors" aria-describedby="hero-video-caption"><source src="static/videos/payload-edit.mp4" type="video/mp4">Download the <a href="static/videos/payload-edit.mp4">experiment video</a>.</video>
+      <figcaption id="hero-video-caption">Both twins fit the loaded robot. After clearing each twin's identified payload correction, their predictions diverge. Actual MuJoCo replay: first 6 s of a held-out trajectory, same target and PD law, no refitting. <a href="#video">Protocol &amp; aggregate results ↓</a></figcaption>
     </figure>
   </div><div class="wrap hero-bottom"><span><b>SAPC</b> &nbsp; Structure-Aware Physical Calibration</span><a href="#idea">Explore the research ↓</a></div></section>
 

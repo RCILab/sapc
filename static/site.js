@@ -18,5 +18,32 @@ document.getElementById('copy-citation').addEventListener('click',async()=>{
   try{await navigator.clipboard.writeText(text);status.textContent='BibTeX copied.';}
   catch{const range=document.createRange();range.selectNodeContents(document.getElementById('bibtex'));const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);status.textContent='Citation selected. Press Ctrl+C or ⌘C to copy.';}
 });
-// Pause media that are no longer visible; all research videos remain user-controlled.
-if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)entry.target.pause();}),{threshold:.05});document.querySelectorAll('video').forEach(video=>observer.observe(video));}
+// Play the lead experiment silently while visible; preserve a visitor's pause.
+// Reduced-motion preferences keep it still until the visitor presses play.
+const heroVideo=document.getElementById('hero-video');
+const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+let heroVisible=false, allowHeroPlayback=true;
+function resumeHero(){
+  if(heroVisible && allowHeroPlayback && !reducedMotion.matches && !document.hidden){
+    heroVideo.play().catch(()=>{});
+  }
+}
+heroVideo.addEventListener('pause',()=>{
+  if(heroVisible && !document.hidden && !reducedMotion.matches) allowHeroPlayback=false;
+});
+heroVideo.addEventListener('play',()=>{allowHeroPlayback=true;});
+if('IntersectionObserver' in window){
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    const visible=entry.isIntersecting && entry.intersectionRatio>=.25;
+    if(entry.target===heroVideo){heroVisible=visible;if(visible) resumeHero();}
+    if(!visible) entry.target.pause();
+  }),{threshold:[0,.25]});
+  document.querySelectorAll('video').forEach(video=>observer.observe(video));
+}
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden) document.querySelectorAll('video').forEach(video=>video.pause());
+  else resumeHero();
+});
+reducedMotion.addEventListener('change',()=>{
+  if(reducedMotion.matches) heroVideo.pause();else resumeHero();
+});
