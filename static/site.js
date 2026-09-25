@@ -47,3 +47,18 @@ document.addEventListener('visibilitychange',()=>{
 reducedMotion.addEventListener('change',()=>{
   if(reducedMotion.matches) heroVideo.pause();else resumeHero();
 });
+
+// A dedicated control keeps decorative background motion optional.
+const heroMotion=document.getElementById('hero-motion');
+function syncHeroControl(){
+  const action=heroVideo.paused?'Play':'Pause';
+  heroMotion.textContent=action+' background';
+  heroMotion.setAttribute('aria-label',action+' background video');
+}
+heroVideo.addEventListener('play',syncHeroControl);
+heroVideo.addEventListener('pause',syncHeroControl);
+heroMotion.addEventListener('click',()=>{
+  if(heroVideo.paused){allowHeroPlayback=true;heroVideo.play().catch(()=>{});}
+  else{allowHeroPlayback=false;heroVideo.pause();}
+});
+syncHeroControl();

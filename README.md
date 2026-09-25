@@ -39,3 +39,5 @@ The payload-removal video replays stored fitted coefficients on the beginning of
 The payload block is a visual-only proxy for the injected inertial parameters. No rendered displacement is artificially amplified. The work is a controlled simulation study and does not claim hardware validation or accepted publication status.
 
 Page structure is inspired by the laboratory's [CAMP-MPPI](https://rcilab.khu.ac.kr/CAMP-MPPI/) and [FACE](https://rcilab.khu.ac.kr/face/) pages; this site's HTML/CSS/JS were written for SAPC.
+
+The hero background is a six-second crop of the same payload-removal replay, with the original timing and robot motion preserved. The graph and embedded labels are omitted for the background; the complete comparison remains in the experiment section. The highlighted hero numbers are the paper's aggregate held-out TCP RMSE, not instantaneous errors in that excerpt. Background motion is muted, can be paused, and respects reduced-motion preferences.

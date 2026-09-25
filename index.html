@@ -30,23 +30,30 @@
   <nav aria-label="Main navigation"><a href="#idea">Idea</a><a href="#video">Video</a><a href="#method">Method</a><a href="#results">Results</a><a href="#resources">Code &amp; data</a><a href="static/pdfs/sapc-paper.pdf">Paper ↗</a></nav>
 </div></header>
 <main id="main">
-  <section class="hero" id="top"><div class="wrap hero-grid">
-    <div class="hero-copy">
-      <p class="eyebrow">Robot digital twins · Physical attribution</p>
-      <h1>Fidelity is not<br><em>identification.</em></h1>
-      <p class="full-title">Structure-Aware Calibration<br>of Robot Digital Twins</p>
+  <section class="hero" id="top">
+    <video class="hero-background" id="hero-video" muted loop playsinline preload="metadata" poster="static/images/hero-background.jpg" aria-hidden="true" tabindex="-1"><source src="static/videos/hero-background.mp4" type="video/mp4"></video>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-focus" aria-hidden="true"></div>
+    <div class="wrap hero-content">
+      <div class="hero-copy">
+        <p class="eyebrow">Robot digital twins &middot; Physical attribution</p>
+        <h1>Fidelity is not <em>identification.</em></h1>
+        <p class="full-title">Structure-Aware Calibration of Robot Digital Twins</p>
+        <p class="authors"><span>Suhwan Park</span> &middot; <span>Jihwan Lee</span> &middot; <span>Jiyong Park</span> &middot; <a href="mailto:kim87@khu.ac.kr">Sanghyun Kim</a></p>
+        <p class="affiliation">Robot Control and Intelligence Laboratory &middot; Kyung Hee University</p>
+        <div class="actions"><a class="button primary" href="static/pdfs/sapc-paper.pdf">Read the paper &#8599;</a><a class="button light" href="#video">Watch the full comparison &#8595;</a></div>
+      </div>
+      <div class="hero-evidence">
+        <p class="hero-evidence-title">Remove the identified payload. <strong>The error stays in the dense twin.</strong></p>
+        <div class="hero-scores">
+          <div class="hero-reference"><span>Unloaded reference</span><strong>Measured motion</strong></div>
+          <div class="hero-dense"><span>Dense LS after edit</span><strong>11.73 <small>mm</small></strong></div>
+          <div class="hero-sapc"><span>SAPC after edit</span><strong>0.099 <small>mm</small></strong></div>
+        </div>
+        <div class="hero-foot"><p>Held-out TCP RMSE &middot; 2 &times; 20 s trajectories &middot; no refitting<br><span>Background: actual 6 s replay excerpt. Motion is not exaggerated.</span></p><button type="button" id="hero-motion" aria-controls="hero-video" aria-label="Play background video">Play background</button></div>
+      </div>
     </div>
-    <div class="hero-meta">
-      <p class="authors">Suhwan Park &nbsp;&middot;&nbsp; Jihwan Lee &nbsp;&middot;&nbsp; Jiyong Park &nbsp;&middot;&nbsp; <a href="mailto:kim87@khu.ac.kr">Sanghyun Kim</a></p>
-      <p class="affiliation">Robot Control and Intelligence Laboratory<br>Kyung Hee University</p>
-      <div class="actions"><a class="button primary" href="static/pdfs/sapc-paper.pdf">Read the paper ↗</a><a class="button light" href="#video">Explore the results ↓</a></div>
-    </div>
-    <figure class="hero-video">
-      <div class="hero-video-heading"><span class="eyebrow">The edit test</span><h2>Remove the payload. Reveal the difference.</h2></div>
-      <video id="hero-video" controls muted loop playsinline preload="metadata" poster="static/images/payload-edit-poster.png" aria-label="Payload-removal experiment: unloaded reference, dense calibrated twin and SAPC, with measured TCP errors" aria-describedby="hero-video-caption"><source src="static/videos/payload-edit.mp4" type="video/mp4">Download the <a href="static/videos/payload-edit.mp4">experiment video</a>.</video>
-      <figcaption id="hero-video-caption">Both twins fit the loaded robot. After clearing each twin's identified payload correction, their predictions diverge. Actual MuJoCo replay: first 6 s of a held-out trajectory, same target and PD law, no refitting. <a href="#video">Protocol &amp; aggregate results ↓</a></figcaption>
-    </figure>
-  </div><div class="wrap hero-bottom"><span><b>SAPC</b> &nbsp; Structure-Aware Physical Calibration</span><a href="#idea">Explore the research ↓</a></div></section>
+  </section>
 
   <section class="section" id="idea"><div class="wrap">
     <div class="section-heading"><div><p class="eyebrow">The central question</p><h2>Does the twin behave correctly?<br>Or does it contain the right physics?</h2></div><p class="standfirst">These are different questions. Dense calibration and SAPC both reproduce held-out motion to about 0.03 mm. Their explanations of an injected 0.8 kg payload are very different.</p></div>
