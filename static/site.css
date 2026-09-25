@@ -37,3 +37,5 @@
 @media(max-width:700px){.hero-background{mask-image:linear-gradient(180deg,transparent,#000 20%,#000 80%,transparent)}}
 
 .hero-foot{justify-content:flex-end}
+
+.hero .affiliation a{color:inherit}.hero .affiliation a:hover{color:#fff}
