@@ -40,3 +40,5 @@
 
 .hero .affiliation a{color:inherit}.hero .affiliation a:hover{color:#fff}
 .nd{color:#c62828}
+.hero .venue{margin-top:10px;font-size:13px;color:#cfdde6;letter-spacing:.01em}.hero .venue em{font-style:italic}
+@media(max-width:700px){.hero .venue{font-size:11px;margin-top:8px}}
