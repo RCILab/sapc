@@ -1,0 +1,24 @@
+{
+  "condition": "MuJoCo controlled reference, measurement noise x1, held-out seeds 11 and 12",
+  "true_payload_kg": 0.8,
+  "models": {
+    "nominal": {
+      "loaded_mm": 14.43,
+      "removed_mm": 2.600784361905334
+    },
+    "dense": {
+      "loaded_mm": 0.027034609328516184,
+      "removed_mm": 11.733566819123542,
+      "payload_kg": 0.13047991578214987
+    },
+    "sapc": {
+      "loaded_mm": 0.029590171974914273,
+      "removed_mm": 0.09910882886778385,
+      "payload_kg": 0.7942443885842636
+    }
+  },
+  "source_files": [
+    "results/gate_results.json",
+    "results/counterfactual.json"
+  ]
+}

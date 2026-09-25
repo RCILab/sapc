@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAPC — Fidelity Is Not Identification</title>
+  <meta name="description" content="Structure-aware physical calibration of robot digital twins. Matching motion does not identify physics: a payload edit exposes the difference.">
+  <meta name="theme-color" content="#142733">
+  <meta name="citation_title" content="Fidelity Is Not Identification: Structure-Aware Calibration of Robot Digital Twins">
+  <meta name="citation_author" content="Suhwan Park">
+  <meta name="citation_author" content="Sanghyun Kim">
+  <meta name="citation_pdf_url" content="https://rcilab.khu.ac.kr/sapc/static/pdfs/sapc-paper.pdf">
+  <meta property="og:title" content="SAPC — Fidelity Is Not Identification">
+  <meta property="og:description" content="The same motion. Different physics. A tool change reveals why attribution matters.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rcilab.khu.ac.kr/sapc/">
+  <meta property="og:image" content="https://rcilab.khu.ac.kr/sapc/static/images/payload-edit.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://rcilab.khu.ac.kr/sapc/">
+  <link rel="icon" href="static/images/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="static/site.css">
+  <script src="static/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar"><div class="wrap nav-row">
+  <a class="brand" href="#top"><img src="static/images/icon.svg" width="25" height="25" alt="">SAPC</a>
+  <nav aria-label="Main navigation"><a href="#idea">Idea</a><a href="#video">Video</a><a href="#method">Method</a><a href="#results">Results</a><a href="#resources">Code &amp; data</a><a href="static/pdfs/sapc-paper.pdf">Paper ↗</a></nav>
+</div></header>
+<main id="main">
+  <section class="hero" id="top"><div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Robot digital twins · Physical attribution</p>
+      <h1>Fidelity is not<br><em>identification.</em></h1>
+      <p class="full-title">Structure-Aware Calibration<br>of Robot Digital Twins</p>
+      <p class="authors">Suhwan Park &nbsp;·&nbsp; <a href="mailto:kim87@khu.ac.kr">Sanghyun Kim</a></p>
+      <p class="affiliation">Robot Control and Intelligence Laboratory<br>Kyung Hee University</p>
+      <p class="hero-lead">A twin can reproduce the motion while putting the correction in the wrong part of the robot.</p>
+      <div class="actions"><a class="button primary" href="static/pdfs/sapc-paper.pdf">Read the paper ↗</a><a class="button light" href="#video">Watch the experiment ↓</a></div>
+    </div>
+    <figure class="hero-robot">
+      <div class="robot-stage"><img src="static/images/loaded.png" width="720" height="710" alt="Native MuJoCo render of the FR3 robot carrying the illustrated 0.8 kilogram payload at its flange." fetchpriority="high"><span class="payload-tag"><b>0.8 kg</b>Known payload</span><span class="stage-mark">FR3 / CONTROLLED REFERENCE</span></div>
+      <figcaption>Known physical changes.<br>More than one explanation of the same motion.</figcaption>
+    </figure>
+  </div><div class="wrap hero-bottom"><span><b>SAPC</b> &nbsp; Structure-Aware Physical Calibration</span><a href="#idea">Explore the research ↓</a></div></section>
+
+  <section class="section" id="idea"><div class="wrap">
+    <div class="section-heading"><div><p class="eyebrow">The central question</p><h2>Does the twin behave correctly?<br>Or does it contain the right physics?</h2></div><p class="standfirst">These are different questions. Dense calibration and SAPC both reproduce held-out motion to about 0.03 mm. Their explanations of an injected 0.8 kg payload are very different.</p></div>
+    <div class="attribution-grid">
+      <figure><img src="static/images/dense.png" width="720" height="710" loading="lazy" alt="Dense calibrated twin with mass increments distributed over links 3 through 7."><figcaption><span class="method dense">Dense least squares</span><strong>0.130 <small>kg</small></strong><span>Estimated payload</span></figcaption></figure>
+      <div class="idea-middle"><span class="small-label">Same loaded behavior</span><div class="equivalence">≈</div><p>Different physical<br>attribution</p><a href="#video">Then remove the payload ↓</a></div>
+      <figure><img src="static/images/sapc.png" width="720" height="710" loading="lazy" alt="SAPC calibrated twin with mass corrections at link 3 and link 7."><figcaption><span class="method sapc">SAPC</span><strong>0.794 <small>kg</small></strong><span>Estimated payload</span></figcaption></figure>
+    </div>
+    <p class="caption">MuJoCo controlled study, measurement noise ×1. Colored bodies have fitted mass increments above 0.01 kg; color identifies location, not magnitude. All robot views use a common static pose. The payload block is a visual proxy for the injected inertial parameters.</p>
+  </div></section>
+
+  <section class="section band" id="video"><div class="wrap">
+    <p class="eyebrow">The consequence of attribution</p><h2>Change the tool.<br>Test the explanation.</h2>
+    <p class="standfirst">Remove the payload from the reference. Clear only the identified link-7 increment from each calibrated twin, without refitting. The other physical changes remain.</p>
+    <figure class="video-figure"><video controls muted playsinline preload="metadata" poster="static/images/payload-edit-poster.png" aria-label="Payload-removal replay comparing the unloaded reference, dense calibrated twin and SAPC, with measured TCP error traces"><source src="static/videos/payload-edit.mp4" type="video/mp4">Download the <a href="static/videos/payload-edit.mp4">payload-removal video</a>.</video><figcaption>A replay of the saved noise-×1 fits on the first 6 s of held-out seed 11. Same target trajectory and PD control law; the closed-loop torques can differ. The video shows instantaneous errors. The aggregate results below average two full 20 s trajectories.</figcaption></figure>
+    <div class="comparison">
+      <div class="comparison-heading"><div><h3>Replay TCP RMSE</h3><p>Switch between the loaded and edited twins.</p></div><div class="segmented" role="group" aria-label="Payload condition"><button type="button" data-condition="loaded" aria-pressed="false">Payload attached</button><button type="button" data-condition="removed" aria-pressed="true">Payload removed</button></div></div>
+      <div class="score-grid" aria-live="polite" aria-atomic="true">
+        <div class="score nominal"><span>Uncalibrated twin</span><strong id="nominal-score">2.60<small>mm</small></strong></div>
+        <div class="score dense"><span>Dense least squares</span><strong id="dense-score">11.73<small>mm</small></strong></div>
+        <div class="score sapc"><span>SAPC</span><strong id="sapc-score">0.099<small>mm</small></strong></div>
+      </div>
+      <p class="comparison-note" id="condition-note">After removal, mass corrections assigned to other links stay behind in the dense twin.</p>
+    </div>
+    <p class="caption">Noise ×1, held-out seeds 11 and 12. The unloaded reference still contains the link-3 and joint-4/joint-6 discrepancies; it is not the fully nominal negative control. <a href="static/data/summary.json">Download these values (JSON)</a>.</p>
+    <details><summary>See the complete payload-edit figure</summary><figure class="paper-figure"><a href="static/images/payload-edit.png"><img src="static/images/payload-edit.png" width="3720" height="1430" loading="lazy" alt="Three-panel figure showing payload removal, true and estimated link mass increments, and loaded versus removed TCP errors on a logarithmic scale."></a><figcaption>Replacing the payload with a known 0.5 kg tool gives the same pattern: 11.73 mm for dense LS and 0.100 mm for SAPC. Click the figure to inspect it at full resolution.</figcaption></figure></details>
+  </div></section>
+
+  <section class="section" id="abstract"><div class="wrap abstract-grid"><div><p class="eyebrow">The research</p><h2>Abstract</h2></div><div class="prose"><p>Digital twins of robots are validated by how closely they reproduce measured trajectories, torques and interaction forces. This paper shows that such behavioral fidelity does not establish that the twin contains the right physics, and proposes a calibration and validation protocol that keeps the two apart. On a 7-DoF manipulator with exactly known injected discrepancies, dense re-identification, with or without physically consistent inertias, and the proposed structure-aware calibration reproduce held-out and faster motions to about 0.03 mm and an unseen press task within 1 ms in contact onset and 3 % in holding force. Yet the dense twins attribute an injected 0.8 kg payload to 0.13 kg spread over neighbouring links, whereas the proposed calibration recovers 0.79 kg at the correct location. The competing corrections differ by a structurally null direction, so no free-space test separates them; once the payload is removed from the twins, the dense ones miss the unloaded reference by about 12 mm, worse than no calibration, and the structure-aware one by 0.1 mm. The method selects body and joint corrections from a simulator-derived regressor, admitting the uncorrected twin, and writes them back into an executable simulator model. Against Gazebo and Isaac Sim references it recovers the injected payload and friction, identifies the rotor inertia missing from the Gazebo description from nominal data alone, and returns no correction where nothing changed. Twin validation should therefore report behavioral fidelity, physical attribution and residual model-form discrepancy separately, and test the twin under the edits it will undergo in service.</p></div></div></section>
+
+  <section class="section band" id="method"><div class="wrap">
+    <p class="eyebrow">Structure-aware physical calibration</p><h2>Give each correction<br>a physical address.</h2>
+    <p class="standfirst">SAPC updates an existing twin under a sparse-change prior: a payload, a worn joint or a replaced component changes only a few physical groups.</p>
+    <ol class="method-steps"><li><span>01</span><h3>Explain the residual</h3><p>Subtract nominal inverse dynamics from measured torque. Extract an inertial regressor from the simulator and add friction and armature terms.</p></li><li><span>02</span><h3>Select physical groups</h3><p>Bounded forward selection with trajectory-wise cross-validation chooses a small set of links and joints. The uncorrected twin is a candidate too.</p></li><li><span>03</span><h3>Build an executable twin</h3><p>Project selected inertias to physically consistent values, then write the corrections into native simulator fields.</p></li></ol>
+    <div class="library-line"><b>112</b> coefficients <span>·</span><b>15</b> physical groups <span>·</span><b>3</b> validation axes</div>
+    <figure class="paper-figure"><a href="static/images/method.png"><img src="static/images/method.png" width="3200" height="1920" loading="lazy" alt="SAPC pipeline: reference data and nominal twin, a 112-column regressor, bounded forward group selection, projection and native write-back, and separate behavioral, attribution and residual evaluation."></a><figcaption>Physical-consistency projection follows selection. Behavioral fidelity, physical attribution and remaining model discrepancy are evaluated separately. Click to enlarge.</figcaption></figure>
+    <div class="identifiability"><h3>Why a good fit is not enough</h3><p>The FR3 has 70 inertial parameters but only 43 independent torque-relevant combinations. Structural null directions can change the parameter attribution without changing free-space dynamics. A prior chooses a physical explanation; validation must also report where that explanation is not identifiable.</p></div>
+  </div></section>
+
+  <section class="section" id="results"><div class="wrap">
+    <p class="eyebrow">Controlled and cross-engine validation</p><h2>Three reference simulators.<br>The same attribution question.</h2>
+    <p class="standfirst">The calibrated twin is always MuJoCo. The references share the same FR3 description and injected discrepancies, while their solvers and representational details differ.</p>
+    <div class="engine-grid">
+      <article><img src="static/images/mujoco.png" width="1050" height="1000" loading="lazy" alt="Native MuJoCo view of the FR3 reference."><div><span class="small-label">Controlled identification</span><h3>MuJoCo → MuJoCo</h3><p>Exact injected ground truth separates parameter recovery from output agreement.</p></div></article>
+      <article><img src="static/images/gazebo.png" width="1050" height="1000" loading="lazy" alt="Native Gazebo view of the FR3 reference."><div><span class="small-label">Cross-engine 01</span><h3>Gazebo / DART → MuJoCo</h3><p>Calibration also identifies the rotor inertia missing from the SDF description.</p></div></article>
+      <article><img src="static/images/isaac.png" width="1050" height="1000" loading="lazy" alt="Native Isaac Sim view of the FR3 reference."><div><span class="small-label">Cross-engine 02</span><h3>Isaac / PhysX → MuJoCo</h3><p>With armature preserved, SAPC selects exactly the four injected groups.</p></div></article>
+    </div>
+    <div class="table-scroll"><table><caption>Held-out replay and estimated payload, measurement noise ×1; true payload 0.8 kg.</caption><thead><tr><th scope="col">Reference</th><th scope="col">Dense TCP<br><small>mm</small></th><th scope="col">SAPC TCP<br><small>mm</small></th><th scope="col">Dense payload<br><small>kg</small></th><th scope="col">SAPC payload<br><small>kg</small></th></tr></thead><tbody><tr><th scope="row">MuJoCo</th><td>0.027</td><td>0.030</td><td>0.130</td><td class="sapc">0.794</td></tr><tr><th scope="row">Gazebo / DART</th><td>0.34</td><td>0.29</td><td>0.131</td><td class="sapc">0.797</td></tr><tr><th scope="row">Isaac / PhysX</th><td>0.26</td><td>0.26</td><td>0.131</td><td class="sapc">0.795</td></tr></tbody></table></div>
+    <details><summary>Watch the same-torque, three-engine illustration</summary><figure class="video-figure"><video controls muted playsinline preload="none" poster="static/images/shared-torque-poster.png" aria-label="Same recorded torque applied to MuJoCo, Gazebo and PhysX, with actual TCP vertical displacement"><source src="static/videos/shared-torque.mp4" type="video/mp4"></video><figcaption>A separate nominal illustration: 0.65 s of physical time, played 8× slower, with the same recorded torque and initial state. No payload is added. Gazebo lacks rotor armature. The original engine trajectories are visualized with a common MuJoCo renderer; these are not native-engine video captures.</figcaption></figure></details>
+    <details><summary>Separate representable differences from remaining engine discrepancy</summary><figure class="paper-figure"><img src="static/images/decomposition.png" width="2420" height="704" loading="lazy" alt="Cross-engine replay error comparison: nominal Gazebo calibration reduces 0.52 to 0.11 mm, while nominal PhysX requires no correction."><figcaption>Nominal Gazebo data alone reveal the armature deficit and joint-7 compensation. Nominal PhysX data return the uncorrected twin. The matched-parameter twin is a reference for the remaining discrepancy, not a universal error floor.</figcaption></figure></details>
+  </div></section>
+
+  <section class="section band" id="stability"><div class="wrap">
+    <div class="section-heading"><div><p class="eyebrow">Stability and a negative control</p><h2>Stable strong groups.<br>Visible identifiability limits.</h2></div><p class="standfirst">Keep the reference trajectories fixed and resample only measurement noise. The payload and both friction groups remain selected in every realization at both noise levels.</p></div>
+    <div class="table-scroll"><table><caption>Selection counts for the near-aliased link groups.</caption><thead><tr><th>Reference / noise</th><th>Realizations</th><th>link3</th><th>link4</th></tr></thead><tbody><tr><th scope="row">MuJoCo ×1</th><td>20</td><td>20 / 20</td><td>0 / 20</td></tr><tr><th scope="row">PhysX ×1</th><td>10</td><td>10 / 10</td><td>0 / 10</td></tr><tr><th scope="row">MuJoCo ×3</th><td>10</td><td>8 / 10</td><td>2 / 10</td></tr><tr><th scope="row">PhysX ×3</th><td>10</td><td>7 / 10</td><td>3 / 10</td></tr></tbody></table></div>
+    <div class="control-note"><strong>Nothing injected. Nothing invented.</strong><p>On nominal PhysX data, SAPC returns the uncorrected twin in all 10 noise realizations. At high noise, link3 can be replaced by its near-aliased neighbor link4. Selection frequency reports this uncertainty; it is not a probability of correctness.</p></div>
+    <details><summary>Inspect the full stability and group-separation figure</summary><figure class="paper-figure"><a href="static/images/stability.png"><img src="static/images/stability.png" width="2420" height="726" loading="lazy" alt="Selection frequencies, normalized physical estimates and a group-separation matrix."></a><figcaption>Payload estimates at noise ×1: MuJoCo 0.794 ± 0.001 kg and PhysX 0.795 ± 0.001 kg. Link3's individual mass remains structurally unidentifiable.</figcaption></figure></details>
+  </div></section>
+
+  <section class="section" id="scope"><div class="wrap scope-grid"><div><p class="eyebrow">What the evidence supports</p><h2>Validate the edits<br>a twin will undergo.</h2></div><div class="prose"><p>Dense and structure-aware twins also predict an unseen probe–plate press almost identically. Task success alone still does not establish correct physical attribution.</p><p>This study uses controlled simulators and one FR3 manipulator family. It does not establish hardware performance. Attribution depends on the sparse-change prior, and near-aliased or structurally null directions limit what can be recovered. The PhysX reference uses an analytic friction law shared with the library; contact laws and solvers still differ.</p></div></div></section>
+
+  <section class="section band" id="resources"><div class="wrap">
+    <p class="eyebrow">Paper, code and research artifacts</p><h2>Explore the work.<br>Reproduce the comparisons.</h2>
+    <div class="resource-grid">
+      <a class="resource" href="static/pdfs/sapc-paper.pdf"><span>Manuscript</span><h3>Read the paper ↗</h3><p>Full method, controlled studies, cross-engine comparisons and limitations.</p></a>
+      <a class="resource" href="https://github.com/RCILab/sapc/tree/main/research"><span>Source code</span><h3>Research implementation ↗</h3><p>Identification, native write-back, benchmarks and simulator collection scripts.</p></a>
+      <a class="resource" href="https://github.com/RCILab/sapc/releases/tag/research-artifacts-v1"><span>Data &amp; models</span><h3>Download artifacts ↗</h3><p>Result JSONs, fixed cross-engine trajectories, generated worlds and the FR3 model.</p></a>
+    </div>
+    <div class="download-list"><a href="https://github.com/RCILab/sapc/releases/download/research-artifacts-v1/sapc-results.zip">Results · ZIP · 0.9 MB</a><a href="https://github.com/RCILab/sapc/releases/download/research-artifacts-v1/sapc-trajectories.zip">Trajectories · ZIP · 94.5 MB</a><a href="https://github.com/RCILab/sapc/releases/download/research-artifacts-v1/sapc-models-worlds.zip">Models &amp; worlds · ZIP · 56.0 MB</a><a href="static/pdfs/sapc-slides-ko.pptx">Teaching slides · Korean · PPTX</a><a href="static/pdfs/sapc-slides-ko.pdf">Teaching slides · PDF</a><a href="static/data/release-manifest.json">Checksums &amp; manifest</a></div>
+    <p class="caption">The MuJoCo excitation data can be regenerated from the fixed seeds using the supplied scripts. Cross-engine logs are included to support identification without rerunning either reference simulator. Model assets retain their original MuJoCo Menagerie license.</p>
+  </div></section>
+
+  <section class="section citation" id="citation"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">Reference</p><h2>Cite this work</h2></div><button type="button" class="button" id="copy-citation">Copy BibTeX</button></div><p class="caption">Citation for the research manuscript.</p><pre><code id="bibtex">@misc{park2026sapc,
+  title  = {Fidelity Is Not Identification: Structure-Aware
+            Calibration of Robot Digital Twins},
+  author = {Park, Suhwan and Kim, Sanghyun},
+  year   = {2026},
+  url    = {https://rcilab.khu.ac.kr/sapc}
+}</code></pre><p id="copy-status" role="status" class="caption"></p></div></section>
+</main>
+<footer><div class="wrap footer-row"><a class="brand" href="#top">SAPC</a><p>Robot Control and Intelligence Laboratory · Kyung Hee University</p><a href="https://rcilab.khu.ac.kr/">RCI Lab ↗</a></div><div class="wrap footer-note">Project-page structure inspired by <a href="https://rcilab.khu.ac.kr/CAMP-MPPI/">CAMP-MPPI</a> and <a href="https://rcilab.khu.ac.kr/face/">FACE</a>. <a href="https://github.com/RCILab/sapc">Page source</a> · <a href="mailto:kim87@khu.ac.kr">Contact</a></div></footer>
+</body>
+</html>

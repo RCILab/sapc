@@ -1,0 +1,20 @@
+[package]
+title = "FR3 PhysX headless experiment"
+version = "1.0.0"
+
+[dependencies]
+"isaacsim.core.api" = {}
+"omni.physx" = {}
+"omni.usd" = {}
+"omni.kit.loop-isaac" = {}
+
+[settings]
+app.window.enabled = false
+app.vulkan = false
+app.settings.persistent = false
+app.renderer.enabled = false
+app.audio.enabled = false
+app.exts.folders = ["/isaac-sim/exts", "/isaac-sim/extscache", "/isaac-sim/extsPhysics", "/isaac-sim/extsDeprecated", "/isaac-sim/kit/exts", "/isaac-sim/kit/extscore"]
+app.extensions.registryEnabled = false
+physics.updateToUsd = true
+physics.updateVelocitiesToUsd = true

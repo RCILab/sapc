@@ -1,0 +1,21 @@
+{
+  "version": "2026-09-25b",
+  "identifier": "research-artifacts-v1",
+  "archives": {
+    "sapc-results.zip": {
+      "bytes": 871331,
+      "files": 50,
+      "sha256": "b17efcb55564feea56b003899f1c0fda638ac4d42b03eb94dc5289fdb6b08511"
+    },
+    "sapc-trajectories.zip": {
+      "bytes": 94488624,
+      "files": 30,
+      "sha256": "c974fed627284a83db84ede1742a6a638612a7cbbce0e37866ff63de04cf9648"
+    },
+    "sapc-models-worlds.zip": {
+      "bytes": 55955200,
+      "files": 71,
+      "sha256": "ea366643a8c6e9d2b79265299c8d3552a5a10a41b5e8609f8dca5f78be538cd5"
+    }
+  }
+}

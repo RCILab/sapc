@@ -1,0 +1,7 @@
+mujoco==3.13.0
+numpy
+scipy
+matplotlib
+cvxpy
+clarabel
+# Optional learned baselines: install torch separately for your platform.

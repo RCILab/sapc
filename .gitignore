@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+research/results/
+research/models/
+research/isaac/inputs/
+research/gazebo/traj/
+*.log
+*.out
+.DS_Store
