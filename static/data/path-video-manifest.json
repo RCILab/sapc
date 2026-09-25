@@ -1,0 +1,35 @@
+{
+  "source_logs": {
+    "reference": {
+      "path": "results\\student_deck\\media\\edit_reference.npz",
+      "sha256": "8c641f82421abe22e5797f4199461dbb24ffd7e7039c29f4b3764a185f6263a5"
+    },
+    "dense": {
+      "path": "results\\student_deck\\media\\edit_dense.npz",
+      "sha256": "339cfca942241876d50a2edb7ded91764e1d3e2eac1734fad5714403499cc002"
+    },
+    "sapc": {
+      "path": "results\\student_deck\\media\\edit_sapc.npz",
+      "sha256": "b8056a80d2c59e5b3490e8524449d63f1c543a06858c571cc01d8a7ad6704fcf"
+    }
+  },
+  "fps": 25,
+  "frames": 150,
+  "duration_seconds": 6.0,
+  "spatial_displacement_scale": 1,
+  "reference": "Actual unloaded-reference TCP, not commanded q_ref",
+  "actual": "Saved Dense LS/SAPC q after zeroing their identified link-7 increment",
+  "geometry": "Common nominal geometry; forward kinematics of each saved q; no physics integration",
+  "reference_path": "Full six-second curve, green dashed",
+  "executed_path": "Colored solid, accumulating up to video time",
+  "error_mm": {
+    "dense": {
+      "rmse": 12.125813870022707,
+      "peak": 14.96207094746556
+    },
+    "sapc": {
+      "rmse": 0.1061756664349086,
+      "peak": 0.1382982216567692
+    }
+  }
+}

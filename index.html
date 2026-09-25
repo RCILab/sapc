@@ -31,11 +31,10 @@
 </div></header>
 <main id="main">
   <section class="hero" id="top">
-    <video class="hero-background" id="hero-video" muted loop playsinline preload="metadata" poster="static/images/hero-background.jpg" aria-hidden="true" tabindex="-1"><source src="static/videos/hero-background.mp4" type="video/mp4"></video>
+    <video class="hero-background" id="hero-video" muted loop playsinline preload="metadata" poster="static/images/path-background.jpg" aria-hidden="true" tabindex="-1"><source src="static/videos/path-background.mp4" type="video/mp4"></video>
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="hero-focus" aria-hidden="true"></div>
     <div class="hero-motion-labels" aria-label="Motion comparison">
-      <div class="motion-label motion-true"><strong>True motion</strong><span>Unloaded reference</span></div>
       <div class="motion-label motion-wrong"><strong>Dense LS motion</strong><span>Wrong payload attribution</span></div>
       <div class="motion-label motion-correct"><strong>SAPC motion</strong><span>Correct payload attribution</span></div>
     </div>
@@ -49,13 +48,13 @@
         <div class="actions"><a class="button primary" href="static/pdfs/sapc-paper.pdf">Read the paper &#8599;</a><a class="button light" href="#video">Watch the full comparison &#8595;</a></div>
       </div>
       <div class="hero-evidence">
+        <p class="hero-path-legend"><span class="legend-reference">Green dashed: true TCP path</span><span class="legend-actual">Colored solid: model TCP path</span></p>
         <p class="hero-evidence-title">Remove the identified payload. <strong>The error stays in the dense twin.</strong></p>
         <div class="hero-scores">
-          <div class="hero-reference"><span>Unloaded reference</span><strong>Measured motion</strong></div>
           <div class="hero-dense"><span>Dense LS after edit</span><strong>11.73 <small>mm</small></strong></div>
           <div class="hero-sapc"><span>SAPC after edit</span><strong>0.099 <small>mm</small></strong></div>
         </div>
-        <div class="hero-foot"><p>Held-out TCP RMSE &middot; 2 &times; 20 s trajectories &middot; no refitting<br><span>Background: actual 6 s replay excerpt. Motion is not exaggerated.</span></p><button type="button" id="hero-motion" aria-controls="hero-video" aria-label="Play background video">Play background</button></div>
+        <div class="hero-foot"><p>Held-out TCP RMSE &middot; 2 &times; 20 s trajectories &middot; no refitting<br><span>Actual 6 s replay excerpt &middot; paths at the same spatial scale.</span></p><button type="button" id="hero-motion" aria-controls="hero-video" aria-label="Play background video">Play background</button></div>
       </div>
     </div>
   </section>
@@ -73,7 +72,7 @@
   <section class="section band" id="video"><div class="wrap">
     <p class="eyebrow">The consequence of attribution</p><h2>Change the tool.<br>Test the explanation.</h2>
     <p class="standfirst">Remove the payload from the reference. Clear only the identified link-7 increment from each calibrated twin, without refitting. The other physical changes remain.</p>
-    <figure class="video-figure"><video controls muted playsinline preload="metadata" poster="static/images/payload-edit-poster.png" aria-label="Payload-removal replay comparing the unloaded reference, dense calibrated twin and SAPC, with measured TCP error traces"><source src="static/videos/payload-edit.mp4" type="video/mp4">Download the <a href="static/videos/payload-edit.mp4">payload-removal video</a>.</video><figcaption>A replay of the saved noise-×1 fits on the first 6 s of held-out seed 11. Same target trajectory and PD control law; the closed-loop torques can differ. The video shows instantaneous errors. The aggregate results below average two full 20 s trajectories.</figcaption></figure>
+    <figure class="video-figure"><video controls muted playsinline preload="metadata" poster="static/images/path-comparison-poster.png" aria-label="Dense LS and SAPC replay with the true reference TCP path overlaid on each actual path, plus measured TCP error traces"><source src="static/videos/path-comparison.mp4" type="video/mp4">Download the <a href="static/videos/path-comparison.mp4">payload-removal video</a>.</video><figcaption>Green dashed curves show the actual unloaded-reference TCP path; colored solid curves show each twin's executed path up to the current time, at the same spatial scale. A replay of the saved noise-×1 fits on the first 6 s of held-out seed 11. Same target trajectory and PD control law; the closed-loop torques can differ. The video shows instantaneous errors. The aggregate results below average two full 20 s trajectories.</figcaption></figure>
     <div class="comparison">
       <div class="comparison-heading"><div><h3>Replay TCP RMSE</h3><p>Switch between the loaded and edited twins.</p></div><div class="segmented" role="group" aria-label="Payload condition"><button type="button" data-condition="loaded" aria-pressed="false">Payload attached</button><button type="button" data-condition="removed" aria-pressed="true">Payload removed</button></div></div>
       <div class="score-grid" aria-live="polite" aria-atomic="true">
